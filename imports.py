@@ -1,12 +1,6 @@
-import tkinter as Tk
-from tkinter import messagebox as msb
-
-import sys
 from pygame import time
-import launchpad_py as launchpad
+import launchpad_py as launchpad 
 import threading
-from multiprocessing import Process
-from multiprocessing import Pool
 import json
 from playsound import playsound
 
@@ -23,7 +17,8 @@ elif launchpad.LaunchpadMk2().Check(0):
 	lp = launchpad.LaunchpadMk2()
 	lp.Open(0)
 else:
-	msb.showwarning('Reconect', 'Nie podlaczono Launchpada - Podłacz Launchpada i zrestartuj program')
+	print("Lanchpad not connected")
+	input()
 	exit(0)
 
 LedValue = [5,9,13,21,37,45,49,0]

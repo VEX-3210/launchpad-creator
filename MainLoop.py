@@ -1,17 +1,11 @@
 from imports import *
 import ReadEffect as re
 
-def MainLoop(root):
+def MainLoop():
 	global DetectMidi
 	global Page
 
-	while(True):
-		try:
-			root.update()
-		except:
-			print('application closed')
-			sys.exit()
-
+	try:
 		if DetectMidi==True:
 			events = lp.ButtonStateRaw( returnPressure = True )
 			if events != []:
@@ -48,3 +42,5 @@ def MainLoop(root):
 						pass
 						#print(" PRESSURE: " + str(events[0]) + " " + str(events[1]) )
 						#lp.LedCtrlRawByCode(events[0],3)
+	except:
+		print("ERROR")

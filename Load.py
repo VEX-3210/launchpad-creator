@@ -48,8 +48,7 @@ def LoadPro():
 				lp.LedCtrlRawByCode( 58,LedValue[Value])
 
 				time.wait(sleep)
-			if x==4:
-				
+			if x==4:	
 				lp.LedCtrlRawByCode( 11,LedValue[Value])
 				lp.LedCtrlRawByCode( 12,LedValue[Value])
 				lp.LedCtrlRawByCode( 13,LedValue[Value])

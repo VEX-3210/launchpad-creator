@@ -29,7 +29,7 @@ if trying:
 						'Animation':{
 							'Anim1':{
 
-								'Effect': 0,
+								'Effect': 0,                 #if effect == 1 to dwie animacje effect == 0 jedna animacja na przycisku
 								'Sound': 0,
 								'Loop': 1,
 

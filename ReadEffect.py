@@ -4,11 +4,11 @@ def Read(Path, e, Page2):
 	f = open(Path)
 	data = json.load(f)
 	f.close()
-	#print(data['Pages'][e-1+Page2*96]['Page1']['Button%s'%e]['Animation'])
-	threading.Thread(target=PlaySound2, args=(data, e, Page2,)).start()
-	threading.Thread(target=PlayEffect, args=(data, e, Page2,)).start()
 
+	t1 = threading.Thread(target=PlaySound2, args=(data, e, Page2,)).start()
+	t2 = threading.Thread(target=PlayEffect, args=(data, e, Page2,)).start()
 
+#zaściweciło mi 4 ledy w środku i wywala 
 def PlayEffect(data, e, Page2):
 	Page3 = Page2+1
 	if data['Pages'][e-1+Page2*98]['Page%s'%Page3]['Button%s'%e]['Animation']['Anim%s'%ButtonClick[Page2][e-1]]['Effect'] == 0:
