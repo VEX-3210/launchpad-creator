@@ -1,7 +1,15 @@
-from imports import *
+try:
+	import launchpad_py as launchpad
+	from pygame import time
+except ImportError:
+	try:
+		import launchpad
+		from pygame import time
+	except ImportError:
+		print("ERROR: loading imports failed - Load")
+		exit(0)
 
-
-def LoadPro():
+def LoadPro(lp, LedValue, sleep):
 	lp.LedAllOn(0)
 	for Value in range(8):
 		for x in range(6):
