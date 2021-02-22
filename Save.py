@@ -8,10 +8,10 @@ except ImportError:
 def crateExampleProject():
 	trying = True
 	try:
-		if os.path.exists(".Projects/example/example.json"): 
-			os.remove(".Projects/example/example.json") 
+		if os.path.exists("Projects/example/example.json"): 
+			os.remove("Projects/example/example.json") 
 
-		f = open('.Projects/example/example.json', 'w')
+		f = open('Projects/example/example.json', 'w')
 	except:
 		print('Error: To load file - Save')
 		trying = False
@@ -34,7 +34,7 @@ def crateExampleProject():
 					'Page%s'%p: {
 						'Button%s'%nmb:{
 
-							'Sample':['.Projects/example/Kick.wav'],
+							'Sample':['Projects/example/Kick.wav'],
 
 							'Animation':{
 								'Anim1':{
