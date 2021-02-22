@@ -31,7 +31,7 @@ def MainLoop(DetectMidi, Page, lp, ButtonClick, ButtonSound):
 						if events[0] == 19:
 							Page=7
 			
-						re.Read('.Projects/example/example.json', events[0], Page, lp, ButtonClick, ButtonSound)
+						re.Read('Projects/example/example.json', events[0], Page, lp, ButtonClick, ButtonSound)
 
 					#Note Off event		
 					else:
