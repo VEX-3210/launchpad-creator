@@ -1,15 +1,18 @@
-from imports import *
+from pygame import time
+import launchpad_py as launchpad 
+import threading
+import json
+from playsound import playsound
 
-def Read(Path, e, Page2):
+def Read(Path, e, Page2, lp, ButtonClick, ButtonSound):
 	f = open(Path)
 	data = json.load(f)
 	f.close()
 
-	t1 = threading.Thread(target=PlaySound2, args=(data, e, Page2,)).start()
-	t2 = threading.Thread(target=PlayEffect, args=(data, e, Page2,)).start()
-
-#zaściweciło mi 4 ledy w środku i wywala 
-def PlayEffect(data, e, Page2):
+	t1 = threading.Thread(target=PlayEffect, args=(data, e, Page2, lp, ButtonClick)).start()
+	t2 = threading.Thread(target=PlaySound2, args=(data, e, Page2, ButtonClick, ButtonSound)).start()
+ 
+def PlayEffect(data, e, Page2, lp, ButtonClick):
 	Page3 = Page2+1
 	if data['Pages'][e-1+Page2*98]['Page%s'%Page3]['Button%s'%e]['Animation']['Anim%s'%ButtonClick[Page2][e-1]]['Effect'] == 0:
 		ButtonClick[Page2][e-1] = 1
@@ -36,7 +39,7 @@ def PlayEffect(data, e, Page2):
 
 			time.wait(data['Pages'][e-1+Page2*98]['Page%s'%Page3]['Button%s'%e]['Animation']['Anim%s'%ButtonClick[Page2][e-1]]['Frames'][i]['Time'])
 		
-def PlaySound2(data, e, Page2):
+def PlaySound2(data, e, Page2, ButtonClick, ButtonSound):
 	Page3 = Page2+1
 	if data['Pages'][e-1+Page2*98]['Page%s'%Page3]['Button%s'%e]['Animation']['Anim%s'%ButtonSound[Page2][e-1]]['Sound'] == 0:
 		ButtonSound[Page2][e-1] = 1

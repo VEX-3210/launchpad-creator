@@ -1,10 +1,6 @@
-from imports import *
 import ReadEffect as re
 
-def MainLoop():
-	global DetectMidi
-	global Page
-
+def MainLoop(DetectMidi, Page, lp, ButtonClick, ButtonSound):
 	try:
 		if DetectMidi==True:
 			events = lp.ButtonStateRaw( returnPressure = True )
@@ -35,12 +31,14 @@ def MainLoop():
 						if events[0] == 19:
 							Page=7
 			
-						re.Read('./.Projects/Kaskobi - Paris/Kaskobi - Paris.json',events[0], Page)
+						re.Read('.Projects/example/example.json', events[0], Page, lp, ButtonClick, ButtonSound)
 
 					#Note Off event		
 					else:
 						pass
 						#print(" PRESSURE: " + str(events[0]) + " " + str(events[1]) )
 						#lp.LedCtrlRawByCode(events[0],3)
+		return DetectMidi, Page
 	except:
-		print("ERROR")
+		print("ERROR: MainLoop error")
+		exit(0)
