@@ -1,10 +1,8 @@
 from imports import *
 
 def Read(Path, e, Page2):
-	f = open(Path)
-	data = json.load(f)
-	f.close()
-
+	with open(Path) as f:
+		data = json.load(f)
 	t1 = threading.Thread(target=PlaySound2, args=(data, e, Page2,)).start()
 	t2 = threading.Thread(target=PlayEffect, args=(data, e, Page2,)).start()
 
@@ -15,7 +13,7 @@ def PlayEffect(data, e, Page2):
 		ButtonClick[Page2][e-1] = 1
 	else:
 		ButtonClick[Page2][e-1] = ButtonClick[Page2][e-1]+1
-	for unnecessary in range(data['Pages'][e-1+Page2*98]['Page%s'%Page3]['Button%s'%e]['Animation']['Anim%s'%ButtonClick[Page2][e-1]]['Loop']):
+	for _ in range(data['Pages'][e-1+Page2*98]['Page%s'%Page3]['Button%s'%e]['Animation']['Anim%s'%ButtonClick[Page2][e-1]]['Loop']):
 		for i in data['Pages'][e-1+Page2*98]['Page%s'%Page3]['Button%s'%e]['Animation']['Anim%s'%ButtonClick[Page2][e-1]]['Frames']:
 			for i2, val in enumerate(data['Pages'][e-1+Page2*98]['Page%s'%Page3]['Button%s'%e]['Animation']['Anim%s'%ButtonClick[Page2][e-1]]['Frames'][i]['Button']): 
 				if isinstance(val, int):
